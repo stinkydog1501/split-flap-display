@@ -4,7 +4,7 @@ from machine import I2C, Pin
 import micropython
 from micropython import const
 
-from  splitflap_module import SplitFlapModule
+from splitflap_module import SplitFlapModule
 
 MAX_MODULES = const(8)
 MAX_RPM = const(15)
@@ -44,8 +44,10 @@ class SplitFlapDisplay:
                 steps_per_rot=self.steps_per_rot, 
                 step_offset=module_offsets[i] + self.display_offset, 
                 magnet_pos=self.magnet_position, 
-                charset_size=self.charset_size
-            )
+                charset_size=self.charset_size,
+                sda_pin=sda_pin,
+                scl_pin=scl_pin
+             )
             self.modules.append(mod)
 
         for mod in self.modules:
